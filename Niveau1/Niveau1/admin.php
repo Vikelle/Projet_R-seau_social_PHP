@@ -7,13 +7,11 @@
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
-      
-     
-        <header> 
-        <?php include("header.php"); ?>
-</header>
+        <?php
+            include ("header.php");
+        ?>
 
-           <?php
+         <?php
         /**
          * Etape 1: Ouvrir une connexion avec la base de donnée.
          */
@@ -25,8 +23,8 @@
             echo("Échec de la connexion : " . $mysqli->connect_error);
             exit();
         }
-        
         ?>
+        
         <div id="wrapper" class='admin'>
             <aside>
                 <h2>Mots-clés</h2>

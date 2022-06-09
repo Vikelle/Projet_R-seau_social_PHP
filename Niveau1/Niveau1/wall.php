@@ -7,9 +7,10 @@
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
-        <header>
-        <?php include("header.php"); ?>
-        </header>
+        <?php
+            include ("header.php");
+        ?>
+        
         <div id="wrapper">
             <?php
             /**
