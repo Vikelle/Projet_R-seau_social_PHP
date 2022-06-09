@@ -10,7 +10,7 @@
         <?php
             include ("header.php");
         ?>
-        
+
         <div id="wrapper">
             <?php
             /**
@@ -48,6 +48,40 @@
                 </section>
             </aside>
             <main>
+       
+            <article>
+            <form action="wall.php?user_id=<?php echo $userId ?>" method="post">
+                 <textarea name='new_message'></textarea>
+                 <input type='submit'>
+            </form>
+
+            <?php
+            $verifPost = isset($_POST['new_message']);
+
+            if ($verifPost){
+
+                $content = $mysqli->real_escape_string($_POST['new_message']);
+               
+                $laRequeteEnSql = "INSERT INTO posts (id, user_id, content, created, parent_id) "
+                                . "VALUES (NULL, "
+                                . "'" . $userId . "', "
+                                . "'" . $content . "', "
+                                . "NOW(), "
+                                . "NULL"
+                                . ");";
+                
+                $lesInfo = $mysqli->query($laRequeteEnSql);
+                if ( ! $lesInfo)
+                {
+                    echo "Échec de la requete : " . $mysqli->error;
+                } else {
+                    echo "Bravo !";
+                }
+            }
+            ?>
+
+            </article>
+
                 <?php
                 /**
                  * Etape 3: récupérer tous les messages de l'utilisatrice
@@ -70,6 +104,7 @@
                     echo("Échec de la requete : " . $mysqli->error);
                 }
 
+                
                 /**
                  * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  */
